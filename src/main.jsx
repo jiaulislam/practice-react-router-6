@@ -6,24 +6,24 @@ import "./index.css";
 import Contact, {
   loader as contactLoader,
   action as contactAction,
-} from "./routes/contact";
-import EditContact, { action as editAction } from "./routes/edit";
-import { action as destroyAction } from "./routes/destroy";
-import Root, {
+} from "./components/contacts/contact";
+import EditContact, { action as editAction } from "./components/contacts/edit";
+import { action as destroyAction } from "./components/contacts/destroy";
+import Contacts, {
   loader as rootLoader,
   action as rootAction,
-} from "./routes/root";
-import Home from "./home";
+} from "./components/contacts";
+import Login from "./login";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Login />,
     errorElement: <ErrorPage />,
   },
   {
     path: "contacts/",
-    element: <Root />,
+    element: <Contacts />,
     errorElement: <ErrorPage />,
     loader: rootLoader,
     action: rootAction,

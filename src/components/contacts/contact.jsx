@@ -1,5 +1,5 @@
 import { Form, useLoaderData, useFetcher } from "react-router-dom";
-import { getContact, updateContact } from "../contact";
+import { getContact, updateContact } from "../../services/contactServices";
 
 
 export async function loader({params}) {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet, Form, useLoaderData, NavLink, useNavigation, redirect } from "react-router-dom";
-import { getContacts, createContact } from "../contact";
+import { getContacts, createContact } from "../../services/contactServices";
 
 export async function action() {
   const contact = await createContact();
@@ -12,7 +12,7 @@ export async function loader() {
   return { contacts };
 }
 
-const Root = () => {
+const Contacts = () => {
   const { contacts } = useLoaderData();
   const navigation = useNavigation();
 
@@ -78,4 +78,4 @@ const Root = () => {
   );
 };
 
-export default Root;
+export default Contacts;
