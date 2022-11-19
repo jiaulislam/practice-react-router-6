@@ -102,3 +102,11 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+# python server
+**/server/bin
+**/server/lib
+**/server/lib64
+**/server/include
+**/server/pyvenv.cfg
