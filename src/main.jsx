@@ -9,6 +9,7 @@ import Contact, {
 } from "./components/contacts/contact";
 import EditContact, { action as editAction } from "./components/contacts/edit";
 import { action as destroyAction } from "./components/contacts/destroy";
+import { action as addressDestroyAction } from "./components/contacts/addressDestroy";
 import Contacts, {
   loader as rootLoader,
   action as rootAction,
@@ -42,6 +43,12 @@ const router = createBrowserRouter([
             element: <EditContact />,
             loader: contactLoader,
             action: editAction,
+            children: [
+              {
+                path: ":addressId/destroy",
+                action: addressDestroyAction,
+              },
+            ],
           },
           {
             path: ":contactId/destroy",
@@ -54,7 +61,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  // <React.StrictMode>
+  <RouterProvider router={router} />
+  // </React.StrictMode>
 );

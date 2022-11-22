@@ -1,16 +1,18 @@
 import { Form, useLoaderData, useFetcher } from "react-router-dom";
 import { getContact, updateContact } from "../../services/contactServices";
+import { getAddressOfContact } from "../../services/addressServices";
 
 
 export async function loader({params}) {
     const contact = await getContact(params.contactId);
+    const addresses = await getAddressOfContact(params.contactId)
     if (!contact) {
       throw new Response("", {
         status: 404,
         statusText: "Not Found !!!"
       });
     }
-    return contact;
+    return [contact, addresses];
 }
 
 export async function action({request, params}) {
@@ -22,7 +24,7 @@ export async function action({request, params}) {
 
 export default function Contact() {
 
-  const contact = useLoaderData();
+  const [contact, addresses] = useLoaderData();
 
   return (
     <div id="contact">
