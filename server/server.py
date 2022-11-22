@@ -4,7 +4,7 @@ app = Flask(__name__, static_folder="./dist/assets", template_folder="./dist")
 
 @app.route("/")
 @app.route('/<path:path>')
-def index(path):
+def index(path = None):
     return render_template("index.html")
 
 
