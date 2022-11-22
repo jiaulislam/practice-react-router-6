@@ -1,4 +1,10 @@
-import { Form, useLoaderData, redirect, useNavigate } from "react-router-dom";
+import {
+  Form,
+  useLoaderData,
+  redirect,
+  useNavigate,
+  useFetcher,
+} from "react-router-dom";
 import { updateContact } from "../../services/contactServices";
 import { createAddress } from "../../services/addressServices";
 
@@ -17,7 +23,9 @@ export async function action({ request, params }) {
 
 export default function EditContact() {
   const [contact, addresses] = useLoaderData();
+  const fetcher = useFetcher();
   const navigate = useNavigate();
+
   return (
     <>
       <Form method="post" id="contact-form">
@@ -83,14 +91,22 @@ export default function EditContact() {
         </p>
       </Form>
 
-      <Form method="post">
-        <p style={{display: "flex", justifyContent: "end", alignItems: "center"}}>
-          <span>
-            <button type="submit">CREATE</button>
-          </span>
-          <input type="hidden" value="address" name="_intent" />
-        </p>
-      </Form>
+      {addresses.length < 2 && (
+        <fetcher.Form method="post">
+          <p
+            style={{
+              display: "flex",
+              justifyContent: "end",
+              alignItems: "center",
+            }}
+          >
+            <span>
+              <button type="submit">CREATE</button>
+            </span>
+            <input type="hidden" value="address" name="_intent" />
+          </p>
+        </fetcher.Form>
+      )}
       <div>
         <div
           style={{
